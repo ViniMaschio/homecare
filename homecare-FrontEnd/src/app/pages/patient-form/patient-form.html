@@ -1,0 +1,86 @@
+<ng-template #successCreate> Cadastrado com sucesso! </ng-template>
+<ng-template #successUpdate> Atualizado com sucesso! </ng-template>
+<ng-template #errorTemplate> Ocorreu um erro ao salvar! </ng-template>
+
+<div class="container mt-4">
+  <h2>{{ updatePatient ? "Editar Paciente" : "Novo Paciente" }}</h2>
+
+  <form
+    [formGroup]="patientForm"
+    (ngSubmit)="onSubmit()"
+    class="needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label class="form-label" for="name">Nome do Paciente</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && patientForm.get('name')?.invalid,
+          'is-valid': submitted && patientForm.get('name')?.valid
+        }"
+        formControlName="name"
+      />
+      <div class="invalid-feedback">Nome é obrigatório.</div>
+    </div>
+
+    <div class="mb-3" style="width: 200px">
+      <label class="form-label" for="date_of_birth">Data de Nascimento</label>
+      <input
+        id="date_of_birth"
+        type="date"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && patientForm.get('date_of_birth')?.invalid,
+          'is-valid': submitted && patientForm.get('date_of_birth')?.valid
+        }"
+        formControlName="date_of_birth"
+      />
+      <div class="invalid-feedback">Data é obrigatória.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="address">Endereço</label>
+      <input
+        id="address"
+        type="text"
+        class="form-control"
+        formControlName="address"
+        [ngClass]="{
+          'is-invalid': submitted && patientForm.get('address')?.invalid,
+          'is-valid': submitted && patientForm.get('address')?.valid
+        }"
+      />
+      <div class="invalid-feedback">Endereço é obrigatório.</div>
+    </div>
+
+    <div class="mb-3" style="width: 150px">
+      <label class="form-label" for="phone">Telefone</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="phone"
+        id="phone"
+        mask="(00) 00000-0000"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="medical_history">Histórico Médico</label>
+      <textarea
+        class="form-control"
+        formControlName="medical_history"
+        id="medical_history"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2">
+      {{ updatePatient ? "Salvar" : "Criar" }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">
+      Cancelar
+    </button>
+  </form>
+</div>
