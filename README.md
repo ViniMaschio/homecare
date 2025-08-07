@@ -6,15 +6,16 @@ Este projeto é uma aplicação fullstack desenvolvida como parte de um teste t�
 ✅ Backend (Laravel)
 
 - API RESTful com Laravel 
-- Operações CRUD completas para pacientes
+- Operações CRUD completas
+- Relacionamento N para N
 - Validação de dados
 - Tratamento de erros (ex: paciente não encontrado)
 
 ✅ Frontend (Angular)
 
-- Listagem de pacientes
-- Cadastro e edição de pacientes em formulário validado
-- Deleção de pacientes com confirmação
+- Listagem 
+- Cadastro e edição em formulário validado
+- Deleção com confirmação
 - Navegação entre componentes com roteamento Angular
 - Comunicação com a API via serviço
 - Estilização com Bootstrap
