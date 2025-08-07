@@ -1,0 +1,86 @@
+<ng-template #Template> {{ message }} </ng-template>
+
+<div class="card mb-3 text-center">
+  <h5 class="card-header">Paciente</h5>
+  <div class="card-body">
+    <div class="d-flex flex-column gap-2 mb-4">
+      <h5 class="m-0">Nome: {{ patient.name }}</h5>
+      <p class="m-0">Idade: {{ patient.birth_date | date : "dd/MM/yyyy" }}</p>
+      <p class="m-0">Endereço: {{ patient.address }}</p>
+    </div>
+    <div
+      class="d-flex align-content-center justify-content-between border rounded-2 p-2"
+    >
+      <div class="d-flex align-items-center gap-1">
+        <p class="fw-bold m-0">Cuidadores:</p>
+        <div class="d-flex flex-wrap">
+          <p
+            class="card-text m-0 text-capitalize"
+            *ngFor="let caregiver of patient.caregivers; index as i"
+          >
+            {{ i === 0 ? caregiver.name : "&nbsp;- " + caregiver.name }}
+          </p>
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-sm" (click)="openModal()">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-footer text-center">
+    <button
+      class="btn btn-primary btn-sm me-2"
+      (click)="navigateToEditPatient(patient.id)"
+    >
+      Editar
+    </button>
+    <button
+      class="btn btn-danger btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#deletePatientModal"
+    >
+      Excluir
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="deletePatientModal"
+  tabindex="-1"
+  aria-labelledby="deletePatientModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deletePatientModalLabel">
+          Excluir Paciente
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja excluir este Paciente?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button
+          data-bs-dismiss="modal"
+          type="button"
+          class="btn btn-danger"
+          (click)="deletePatient(patient.id)"
+        >
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

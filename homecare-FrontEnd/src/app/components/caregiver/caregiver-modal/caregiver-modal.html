@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title">Editar Paciente</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <label for="patientSelect" class="form-label">Selecione um paciente:</label>
+  <div class="d-flex flex-row align-items-center gap-3">
+    <select
+      class="form-select"
+      id="patientSelect"
+      name="patientSelect"
+      [(ngModel)]="selectedPatient"
+    >
+      <option disabled value="0">Escolha um paciente</option>
+      <option *ngFor="let patient of listPatient" [value]="patient.id">
+        {{ patient.name }}
+      </option>
+    </select>
+    <button type="button" class="btn btn-primary" (click)="addPatient()">
+      Adicionar
+    </button>
+  </div>
+  <div
+    class="border rounded-3 mt-2 d-flex align-items-center justify-content-between ps-3"
+    *ngFor="let patient of caregiver.patients"
+  >
+    <p class="card-text mb-0">{{ patient.name }}</p>
+    <button
+      type="button"
+      class="btn btn-danger btn-sm"
+      (click)="removePatient(patient.id)"
+    >
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="close()">
+    Cancelar
+  </button>
+  <button type="button" class="btn btn-success" (click)="save()">Salvar</button>
+</div>

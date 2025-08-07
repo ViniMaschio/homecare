@@ -1,0 +1,62 @@
+<ng-template #template> {{ message }} </ng-template>
+
+<div class="container mt-4">
+  <h1 class="text-center mb-4">
+    {{ updatePatient ? "Atualizar Paciente" : "Cadastrar Paciente" }}
+  </h1>
+  <form
+    [formGroup]="patientForm"
+    (ngSubmit)="onSubmit()"
+    class="needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [placeholder]="'Digite o nome do paciente'"
+        [ngClass]="{
+          'is-invalid': isInvalid('name'),
+          'is-valid': isValid('name')
+        }"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Endereço</label>
+      <input
+        type="text"
+        id="address"
+        formControlName="address"
+        [placeholder]="'Digite o endereço do paciente'"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': isInvalid('address'),
+          'is-valid': isValid('address')
+        }"
+      />
+    </div>
+
+    <div class="mb-3" style="width: 170px">
+      <label class="form-label" for="birth_date">Data de Nascimento</label>
+      <input
+        type="date"
+        class="form-control"
+        formControlName="birth_date"
+        id="birth_date"
+        [ngClass]="{
+          'is-invalid': isInvalid('birth_date'),
+          'is-valid': isValid('birth_date')
+        }"
+      />
+    </div>
+    <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
+      Cancelar
+    </button>
+    <button type="submit" class="btn btn-success">
+      {{ updatePatient ? "Atualizar" : "Cadastrar" }}
+    </button>
+  </form>
+</div>

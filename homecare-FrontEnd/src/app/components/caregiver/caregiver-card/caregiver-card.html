@@ -1,0 +1,86 @@
+<ng-template #Template> {{ message }} </ng-template>
+
+<div class="card mb-3 text-center">
+  <h5 class="card-header">Cuidador</h5>
+  <div class="card-body">
+    <div class="d-flex flex-column gap-2 mb-4">
+      <h5 class="m-0">Nome: {{ caregiver.name }}</h5>
+      <p class="m-0">Especialidade: {{ caregiver.specialty }}</p>
+      <p class="m-0">Telefone: {{ caregiver.phone }}</p>
+    </div>
+    <div
+      class="d-flex align-content-center justify-content-between border rounded-2 p-2"
+    >
+      <div class="d-flex align-items-center gap-1">
+        <p class="fw-bold m-0">Pacientes:</p>
+        <div class="d-flex flex-wrap">
+          <p
+            class="card-text m-0 text-capitalize"
+            *ngFor="let patient of caregiver.patients; index as i"
+          >
+            {{ i === 0 ? patient.name : "&nbsp;- " + patient.name }}
+          </p>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="openModal()">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-footer text-center">
+    <button
+      class="btn btn-primary btn-sm me-2"
+      (click)="navigateToEditCaregiver(caregiver.id)"
+    >
+      Editar
+    </button>
+    <button
+      class="btn btn-danger btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#deleteCaregiverModal"
+    >
+      Excluir
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="deleteCaregiverModal"
+  tabindex="-1"
+  aria-labelledby="deleteCaregiverModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteCaregiverModalLabel">
+          Excluir Cuidador
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja excluir este cuidador?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button
+          data-bs-dismiss="modal"
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteCaregiver(caregiver.id)"
+        >
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

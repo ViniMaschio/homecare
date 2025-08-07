@@ -9,5 +9,5 @@ import { ToastsContainer } from './components/toasts-container/toasts-container'
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('FrontEnd');
+  protected readonly title = signal('homecare-frontend');
 }

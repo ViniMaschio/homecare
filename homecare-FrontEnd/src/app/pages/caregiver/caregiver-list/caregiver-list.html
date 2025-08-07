@@ -1,0 +1,27 @@
+<ng-template #template> {{ messager }} </ng-template>
+<app-nav-bar></app-nav-bar>
+<div class="container mt-4">
+  <div
+    class="text-center mb-4 d-flex justify-content-between align-items-center"
+  >
+    <h1>Lista de Cuidadores</h1>
+    <div class="mb-3">
+      <button class="btn btn-primary" (click)="navigateToCreateCaregiver()">
+        Cadastrar Cuidador
+      </button>
+    </div>
+  </div>
+  <div class="row g-3">
+    <ng-container *ngIf="caregivers && caregivers.length; else noData">
+      <app-caregiver-card
+        class="col-12 col-sm-6"
+        *ngFor="let caregiver of caregivers"
+        [caregiver]="caregiver"
+        (caregiverDeleted)="loadCaregiversBeforeDelete()"
+      ></app-caregiver-card>
+    </ng-container>
+    <ng-template #noData>
+      <p class="text-center">Nenhum cuidador encontrado.</p>
+    </ng-template>
+  </div>
+</div>

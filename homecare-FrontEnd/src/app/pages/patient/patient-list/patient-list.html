@@ -1,0 +1,29 @@
+<ng-template #template> {{ menssage }} </ng-template>
+
+<app-nav-bar></app-nav-bar>
+
+<div class="container mt-4">
+  <div
+    class="text-center mb-4 d-flex justify-content-between align-items-center"
+  >
+    <h1>Lista de Pacientes</h1>
+    <div class="mb-3">
+      <button class="btn btn-primary" (click)="navigateToCreatePatient()">
+        Cadastrar Paciente
+      </button>
+    </div>
+  </div>
+  <div class="row g-3">
+    <ng-container *ngIf="patients && patients.length; else noData">
+      <app-patient-card
+        class="col-12 col-sm-6"
+        *ngFor="let patient of patients"
+        [patient]="patient"
+        (patientDeleted)="loadPatientsBeforeDelete()"
+      ></app-patient-card>
+    </ng-container>
+    <ng-template #noData>
+      <p class="text-center">Nenhum paciente encontrado.</p>
+    </ng-template>
+  </div>
+</div>
